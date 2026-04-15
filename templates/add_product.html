@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">Yangi maxsulot qo'shish</h1>
+
+        <form method="post" class="w-50 m-auto d-flex flex-column gap-3" action="">
+            {% csrf_token %}
+            {{ form }}
+            <button class="w-100 btn btn-primary" type="submit">Maxsulotni qo'shish</button>
+        </form>
+
+    </div>
+{% endblock content %}

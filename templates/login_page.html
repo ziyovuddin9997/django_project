@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+		<h1 class="text-center mt-5 mb-2">Tizimga kirish</h1>
+
+		<form action="/authorize/" method="post" class="w-25 m-auto d-flex flex-column gap-2">
+            {% csrf_token %}
+
+            <input name="username" type="text" placeholder="Username" class="form-control" />
+            <input name="password" type="password" placeholder="Parol" class="form-control" />
+
+            <button type="submit" class="btn btn-primary">Kirish</button>
+        </form>
+
+		<p class="text-center mt-2">
+			Akkauntingiz yo'qmi ? <a href="{% url 'registration' %}">Ro'yxatdan o'tish</a>
+		</p>
+
+{% endblock content %}

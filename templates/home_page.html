@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">Home page</h1>
+
+        <div style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 50px;">
+            {% for product in products %}
+                <div class="card" style="min-width: 16rem; max-width: 20rem;">
+                    <img height="200px" src="{% if product.image %}{{ product.image.url }}{% else %}https://community.softr.io/uploads/db9110/original/2X/7/74e6e7e382d0ff5d7773ca9a87e6f6f8817a68a6.jpeg{% endif %}" class="card-img-top" alt="...">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title text-center">
+                            <a href="{% url 'product_detail' product_id=product.id %}">
+                                {{ product.name }}
+                            </a>
+                        </h5>
+                        <p class="card-text text-center {% if request.user == product.owner %} mt-auto {% else %} mb-auto {% endif %}">{{ product.price }} $</p>
+                        <div class="d-flex flex-row gap-2">
+                            {% if request.user == product.owner %}
+                                <a href="{% url 'delete_product' product_id=product.id %}" class="btn btn-danger w-50">O'chirish</a>
+                            {% endif %}
+                            <a href="#" class="btn btn-primary {% if request.user == product.owner %} w-50 {% else %} w-100 {% endif %}">Sotib olish</a>
+                        </div>
+                        {% if request.user == product.owner %}
+                            <a href="{% url 'edit_product' product_id=product.id %}" class="btn btn-warning w-100 mt-2">O'zgartirish</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

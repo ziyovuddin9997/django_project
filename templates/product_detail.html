@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">{{ product.name }} ma'lumotlari</h1>
+        <div class="d-flex flex-row align-items-start justify-content-between gap-5">
+            <img src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" alt="" class="w-50">
+            <div class="d-flex flex-column align-items-start gap-2 w-50">
+                <h4>Maxsulot nomi: {{ product.name }}</h4>
+                <p>Narxi: {{ product.price }} $</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
