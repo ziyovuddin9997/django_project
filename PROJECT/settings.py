@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://applesstore.up.railway.app",
+    "https://*.up.railway.app",
 ]
 
 
