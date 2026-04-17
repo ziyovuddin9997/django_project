@@ -113,8 +113,6 @@ def add_product(request):
             # Bosh sahifaga yo'naltirish
             return redirect("index")
 
-        return render(request, "add_product.html", {"form": form})
-
     # Bo'sh forma hosil qilish (frontend da chizib ko'rsatish uchun)
     form = ProductForm()
     return render(request, "add_product.html", {"form": form})
