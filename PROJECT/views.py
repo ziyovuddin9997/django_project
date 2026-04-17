@@ -100,22 +100,20 @@ def register_user(request):
 
 
 def add_product(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     if request.method == "POST":
-        # Forma yaratish va uni ichini frontend dan kelgan ma'lumotlar bilan to'ldirish
         form = ProductForm(request.POST, request.FILES)
 
-        # Frontenddan kelgan ma'lumotlar model kriteriyalariga mos kelishini tekshirish
         if form.is_valid():
-            product = form.save(commit=False) # Formani saqlash, lekin natijada hosil bo'ladigan yangi maxsulot obyektini bazaga yozmaslik
-            product.owner = request.user      # Yangi hosil bo'lgan maxsulot obyektiga owner sohasini qo'shib yuborish
-            product.save()                    # Maxsulot obyektini saqlash va endi haqiqatdan bazaga saqlash
-
-            # Bosh sahifaga yo'naltirish
+            product = form.save(commit=False)
+            product.owner = request.user
+            product.save()
             return redirect("index")
+    else:
+        form = ProductForm()
 
-
-    # Bo'sh forma hosil qilish (frontend da chizib ko'rsatish uchun)
-    form = ProductForm()
     return render(request, "add_product.html", {"form": form})
 
 
