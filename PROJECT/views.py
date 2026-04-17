@@ -102,7 +102,7 @@ def register_user(request):
 def add_product(request):
     if request.method == "POST":
         # Forma yaratish va uni ichini frontend dan kelgan ma'lumotlar bilan to'ldirish
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
 
         # Frontenddan kelgan ma'lumotlar model kriteriyalariga mos kelishini tekshirish
         if form.is_valid():
