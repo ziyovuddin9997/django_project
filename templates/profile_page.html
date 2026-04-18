@@ -5,39 +5,41 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
 
-            {% if request.user.is_authenticated %}
-
-            <div class="card shadow">
+            <div class="card shadow-lg border-0">
+                
+                <!-- Header -->
                 <div class="card-header bg-primary text-white text-center">
                     <h4 class="mb-0">Profile</h4>
                 </div>
 
-                <div class="card-body">
-                    <p class="mb-2"><b>Username:</b> {{ request.user.username }}</p>
-                    <p class="mb-2"><b>Email:</b> {{ request.user.email }}</p>
+                <!-- Body -->
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ request.user.username }}</h5>
+                    <p class="text-muted mb-3">{{ request.user.email }}</p>
+
+                    <hr>
+
+                    <div class="text-start">
+                        <p class="mb-2">
+                            <strong>Username:</strong> {{ request.user.username }}
+                        </p>
+                        <p class="mb-2">
+                            <strong>Email:</strong> {{ request.user.email }}
+                        </p>
+                    </div>
                 </div>
 
-                <div class="card-footer text-center">
-                    <a href="#" class="btn btn-outline-primary btn-sm">
-                        Edit
+                <!-- Footer -->
+                <div class="card-footer bg-light text-center">
+                    <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                        Edit Profile
                     </a>
                     <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">
                         Logout
                     </a>
                 </div>
+
             </div>
-
-            {% else %}
-
-            <div class="alert alert-warning text-center">
-                You are not logged in
-                <br>
-                <a href="{% url 'login' %}" class="btn btn-primary mt-2">
-                    Login
-                </a>
-            </div>
-
-            {% endif %}
 
         </div>
     </div>
